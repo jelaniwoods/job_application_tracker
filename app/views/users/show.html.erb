@@ -1,0 +1,23 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @user, partial: "card", as: :user %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "users/user_job_applications" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "users/user_interviewed_companies" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "users/user_interviews" %>
+  </div>
+</div>

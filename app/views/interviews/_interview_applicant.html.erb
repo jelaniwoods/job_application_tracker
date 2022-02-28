@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Applicant
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @interview.applicant.each do |user| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <a href="/users/<%= user.id %>">
+          <%= user %>
+        </a>
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>

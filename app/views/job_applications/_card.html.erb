@@ -1,0 +1,59 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Job Application #<%= job_application.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Title</dt>
+      <dd><%= job_application.title %></dd>
+
+      <dt>Due on</dt>
+      <dd><%= job_application.due_on %></dd>
+
+      <dt>Status</dt>
+      <dd><%= job_application.status %></dd>
+
+      <dt>User</dt>
+      <dd>
+        <% if @job_application.user.present? %>
+          <%= link_to job_application.user, job_application.user %>
+        <% end %>
+      </dd>
+
+      <dt>Company</dt>
+      <dd>
+        <% if @job_application.company.present? %>
+          <%= link_to job_application.company, job_application.company %>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back job_application, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <% if current_user == @job_application.user %>
+          <%= link_to edit_job_application_url(job_application), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <% if current_user == @job_application.user %>
+          <%= link_to job_application, method: :delete, data: { confirm: "Do you really want to delete this job_application?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(job_application.updated_at) %> ago
+  </div>
+</div>

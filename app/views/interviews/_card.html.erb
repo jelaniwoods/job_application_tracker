@@ -1,0 +1,48 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Interview #<%= interview.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Starts on</dt>
+      <dd><%= interview.starts_on %></dd>
+
+      <dt>Round</dt>
+      <dd><%= interview.round %></dd>
+
+      <dt>Completed</dt>
+      <dd><%= interview.completed %></dd>
+
+      <dt>Job application</dt>
+      <dd>
+        <% if @interview.job_application.present? %>
+          <%= link_to interview.job_application, interview.job_application %>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back interview, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_interview_url(interview), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to interview, method: :delete, data: { confirm: "Do you really want to delete this interview?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(interview.updated_at) %> ago
+  </div>
+</div>

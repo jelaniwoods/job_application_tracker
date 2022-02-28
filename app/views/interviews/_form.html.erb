@@ -1,0 +1,94 @@
+<% was_validated = interview.errors.any? %>
+
+<%= form_with(model: interview, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <div class="form-group">
+    <% starts_on_class = "form-control" %>
+    <% starts_on_was_invalid = interview.errors.include?(:starts_on) %>
+
+    <% if was_validated %>
+      <% if starts_on_was_invalid %>
+        <% starts_on_class << " is-invalid" %>
+      <% else %>
+        <% starts_on_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :starts_on %>
+    <%= f.datetime_select :starts_on, class: starts_on_class, placeholder: "Enter starts on" %>
+    <% if starts_on_was_invalid %>
+      <% interview.errors.full_messages_for(:starts_on).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% round_class = "form-control" %>
+    <% round_was_invalid = interview.errors.include?(:round) %>
+
+    <% if was_validated %>
+      <% if round_was_invalid %>
+        <% round_class << " is-invalid" %>
+      <% else %>
+        <% round_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :round %>
+    <%= f.number_field :round, class: round_class, placeholder: "Enter round" %>
+    <% if round_was_invalid %>
+      <% interview.errors.full_messages_for(:round).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-check">
+    <% completed_class = "form-check-input" %>
+    <% completed_was_invalid = interview.errors.include?(:completed) %>
+
+    <% if was_validated %>
+      <% if completed_was_invalid %>
+        <% completed_class << " is-invalid" %>
+      <% else %>
+        <% completed_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :completed, class: "form-check-label" do %>
+      <%= f.check_box :completed, class: completed_class %> Completed
+    <% end %>
+    <% if completed_was_invalid %>
+      <% interview.errors.full_messages_for(:completed).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% job_application_class = "form-control" %>
+    <% job_application_was_invalid = interview.errors.include?(:job_application) %>
+
+    <% if was_validated %>
+      <% if job_application_was_invalid %>
+        <% job_application_class << " is-invalid" %>
+      <% else %>
+        <% job_application_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :job_application_id %>
+    <%= f.collection_select :job_application_id, JobApplication.all, :id, :to_s, {}, class: "form-control" %>
+    <% if job_application_was_invalid %>
+      <% interview.errors.full_messages_for(:job_application).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

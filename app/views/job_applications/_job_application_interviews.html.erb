@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Interviews
+
+    <a data-toggle="collapse" href="#job_application_interviews_new_form">
+      Add interview
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @job_application.interviews.each do |interview| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <%= link_to interview, interview %>
+
+        <%= link_to interview, method: :delete, data: { confirm: "Do you really want to delete this interview" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="job_application_interviews_new_form">
+        <%= render partial: "job_applications/job_application_interviews_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

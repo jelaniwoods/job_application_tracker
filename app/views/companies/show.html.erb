@@ -1,0 +1,17 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render object: @company, partial: "card", as: :company %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "companies/company_job_applications" %>
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: "companies/company_interviewed_applicants" %>
+  </div>
+</div>

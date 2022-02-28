@@ -1,0 +1,22 @@
+<%= form_with(model: @interview, local: true) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :starts_on %>
+    <%= f.datetime_select :starts_on, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :round %>
+
+    <%= f.text_field :round, class: "form-control" %>
+  </div>
+
+  <div class="form-check">
+    <%= f.check_box :completed, class: "form-check-input" %>
+    <%= f.label :completed, class: "form-check-label" %>
+  </div>
+
+  <%= f.hidden_field :job_application_id, value: @job_application.id %>
+
+  <%= f.submit "Create interview", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
