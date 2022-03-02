@@ -21,6 +21,11 @@ namespace :csv do
   desc "TODO"
   task add_users: :environment do
     require "csv"
+    if Rails.env.production?
+      ActiveRecord::Base.connection.tables.each do |t|
+        ActiveRecord::Base.connection.reset_pk_sequence!(t)
+      end
+    end
     Interview.destroy_all
     JobApplication.destroy_all
     User.destroy_all
