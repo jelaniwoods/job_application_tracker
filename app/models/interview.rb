@@ -14,7 +14,7 @@ class Interview < ApplicationRecord
              source: :user
 
   # Validations
-
+  validates(:job_application_id, { :uniqueness => { :scope => ["round"] } })
   # Scopes
 
   def to_s
