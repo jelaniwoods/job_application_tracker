@@ -173,7 +173,7 @@ namespace :csv do
   end
 
   task fix_interviews: :environment do
-    JobApplication.where(status: "Applied").all.each do |a|
+    JobApplication.where(status: "applied").all.each do |a|
       rand(1..3).times do |n|
         round = n + 1
         if round == 1
@@ -185,7 +185,7 @@ namespace :csv do
         end
         c = starts_at < Date.current ? true : false
 
-        a.interviews.create(round: round, starts_at: starts_at, completed: c)
+        a.interviews.create(round: round, starts_on: starts_at, completed: c)
       end
     end
   end
